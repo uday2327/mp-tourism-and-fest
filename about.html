@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Madhya Pradesh Tourism</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --paper: #f5f7fa;
+            --ink: #2c3e50;
+            --muted: #6c757d;
+            --accent: #2c3e50;
+            --accent-dark: #2c3e50;
+            --soft: #e9ecef;
+            --card: #ffffff;
+            --primary-color: #2c3e50;
+            --secondary-color: #6c757d;
+            --light-bg: #f8f9fa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Manrope", sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            font-size: 22px;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            color: #404039 !important;
+        }
+
+        .page-intro {
+            margin-top: 92px;
+            padding: 48px 0 10px;
+        }
+
+        .intro-title {
+            font-size: clamp(2.4rem, 4.4vw, 3.6rem);
+            font-weight: 700;
+        }
+
+        .intro-text {
+            color: var(--muted);
+            max-width: 760px;
+        }
+
+        .intro-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .intro-badge {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .section-container {
+            padding: 64px 0;
+        }
+
+        .section-light {
+            background: white;
+        }
+
+        .section-dark {
+            background: var(--light-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .section-header h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--ink);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            color: var(--muted);
+            margin-top: 18px;
+        }
+
+        .story-card {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            border-radius: 22px;
+            padding: 28px;
+            height: 100%;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.04);
+        }
+
+        .story-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .story-card p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .highlight-card {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            border-radius: 20px;
+            padding: 22px;
+            height: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(44, 62, 80, 0.12);
+        }
+
+        .highlight-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+
+        .highlight-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .highlight-card p {
+            color: var(--muted);
+            margin-bottom: 0;
+        }
+
+        .timeline {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            border-radius: 22px;
+            padding: 28px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px dashed #d0d7de;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-year {
+            min-width: 90px;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .timeline-body h5 {
+            margin-bottom: 6px;
+            font-size: 1.2rem;
+        }
+
+        .timeline-body p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .media-card {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            border-radius: 22px;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .media-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-card .media-body {
+            padding: 20px;
+        }
+
+        .media-card .media-body h4 {
+            margin-bottom: 8px;
+        }
+
+        .media-card .media-body p {
+            color: var(--muted);
+            margin-bottom: 0;
+        }
+
+        .form-card {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 16px 32px rgba(44, 62, 80, 0.08);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 14px;
+            border: 1px solid var(--soft);
+            padding: 12px 14px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.15);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 999px;
+            padding: 12px 26px;
+            font-weight: 600;
+        }
+
+        .contact-card {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .contact-card i {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+        }
+
+        .contact-card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .stats-strip {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            border-radius: 20px;
+            padding: 22px;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stat-item h3 {
+            font-size: 1.9rem;
+            margin-bottom: 6px;
+        }
+
+        .stat-item p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--soft);
+            border-radius: 18px;
+            padding: 18px 22px;
+        }
+
+        .faq-item h5 {
+            margin-bottom: 8px;
+        }
+
+        .faq-item p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .footer {
+            background: #2f3b4a;
+            color: white;
+            padding: 40px 0 30px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 992px) {
+            .page-intro {
+                margin-top: 84px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-year {
+                min-width: unset;
+            }
+
+            .stats-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-strip {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-white shadow">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">Madhya Pradesh Tourism</a>
+
+    <!-- TOGGLER BUTTON -->
+    <button class="navbar-toggler" type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarNav">
+
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- COLLAPSIBLE MENU -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav ms-auto">
+
+        <a class="nav-link " href="index.html">Home</a>
+        <a class="nav-link" href="facts.html">Facts</a>
+        <a class="nav-link" href="places.html">Places</a>
+        <a class="nav-link" href="festival.html">Festival</a>
+        <a class="nav-link" href="arts.html">Art</a>
+        <a class="nav-link active" href="about.html">About</a>
+
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    <div style="height:70px;"></div>
+
+    <section class="page-intro">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7 text-center mx-auto">
+                    <p class="text-uppercase text-muted" style="letter-spacing: 3px; font-size: 0.8rem;">About Madhya
+                        Pradesh Tourism</p>
+                    <h1 class="intro-title">The Heart of India, Curated With Care</h1>
+                    <p class="intro-text">We help travelers experience Madhya Pradesh with clarity, comfort, and
+                        cultural depth. From UNESCO monuments to wildlife sanctuaries, our mission is to celebrate the
+                        state's heritage while making travel planning simple, safe, and inspiring.</p>
+                    <div class="intro-badges justify-content-center">
+                        <span class="intro-badge">Heritage-first storytelling</span>
+                        <span class="intro-badge">Responsible travel</span>
+                        <span class="intro-badge">Local craft and cuisine</span>
+                        <span class="intro-badge">Family-friendly routes</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Story</h2>
+                <p>Why we exist and what we are building for every traveler</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="story-card">
+                        <h3>Bringing the State's Soul to Life</h3>
+                        <p>Madhya Pradesh is a tapestry of ancient capitals, river rituals, tiger corridors, and tribal
+                            art. We work to keep that story authentic and easy to explore. Our guides connect the dots
+                            between history and today, highlighting local voices and living traditions.</p>
+                        <p>Every itinerary we create is balanced for discovery and comfort, with space to slow down,
+                            taste regional cuisine, and meet artisans who keep centuries-old crafts alive.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="story-card">
+                        <h3>What You Can Expect</h3>
+                        <p>Thoughtful planning, honest recommendations, and a clear roadmap for travel in Madhya
+                            Pradesh. We curate the best seasons, ideal routes, and meaningful experiences for families,
+                            students, and explorers.</p>
+                        <p>From sunrise safari drives to temple towns and craft lanes, we aim to turn travel into a
+                            story you will want to revisit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Madhya Pradesh</h2>
+                <p>A state that connects heritage, wildlife, and culture in one journey</p>
+            </div>
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <h3>3+</h3>
+                    <p>UNESCO sites with legendary architecture</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5+</h3>
+                    <p>Major tiger reserves and wildlife sanctuaries</p>
+                </div>
+                <div class="stat-item">
+                    <h3>30K+</h3>
+                    <p>Years of rock art at Bhimbetka shelters</p>
+                </div>
+                <div class="stat-item">
+                    <h3>12+</h3>
+                    <p>Distinct craft clusters and artisan trails</p>
+                </div>
+            </div>
+            <div class="row g-4 mt-3">
+                <div class="col-lg-6">
+                    <div class="story-card">
+                        <h3>Heritage That Feels Alive</h3>
+                        <p>From the ornate carvings of Khajuraho to the timeless calm of Sanchi, the state preserves
+                            living monuments that still shape daily life, festivals, and artistic traditions.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="story-card">
+                        <h3>Nature With Soul</h3>
+                        <p>Forests, waterfalls, and river gorges offer a slower rhythm of travel, balancing adventure
+                            with quiet spaces for photography and reflection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>What We Focus On</h2>
+                <p>Four pillars that shape every experience we recommend</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-route"></i></div>
+                        <h4>Smart Routes</h4>
+                        <p>Day-by-day plans that connect forts, wildlife, and heritage towns with realistic travel time.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-seedling"></i></div>
+                        <h4>Responsible Travel</h4>
+                        <p>Eco-conscious stays and wildlife experiences that respect local ecosystems.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-palette"></i></div>
+                        <h4>Arts & Culture</h4>
+                        <p>Tribal art trails, craft ateliers, and heritage walks with real context.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-utensils"></i></div>
+                        <h4>Local Flavor</h4>
+                        <p>Food and markets that introduce you to the heartland's culinary stories.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Milestones That Shaped Us</h2>
+                <p>A quick timeline of the tourism story in Madhya Pradesh</p>
+            </div>
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1950s</div>
+                            <div class="timeline-body">
+                                <h5>Heritage Discovery</h5>
+                                <p>Khajuraho, Sanchi, and Bhimbetka gained national attention for their rare
+                                    architecture and rock art.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1970s</div>
+                            <div class="timeline-body">
+                                <h5>Wildlife Protection</h5>
+                                <p>Bandhavgarh and Kanha became icons of tiger conservation and sustainable tourism.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2000s</div>
+                            <div class="timeline-body">
+                                <h5>Eco & Culture Tours</h5>
+                                <p>Tribal art circuits and river valley journeys drew travelers beyond the usual routes.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">Today</div>
+                            <div class="timeline-body">
+                                <h5>Experience-led Travel</h5>
+                                <p>We focus on immersive itineraries, local partnerships, and stories that are easy to
+                                    explore.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="media-card">
+                                <img src="images/bhimbedka.jpg" alt="Bhimbetka rock shelters">
+                                <div class="media-body">
+                                    <h4>Heritage Trails</h4>
+                                    <p>Walk through prehistoric rock art, temple towns, and royal capitals with guided
+                                        context.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="media-card">
+                                <img src="images/pachmarhi.jpg" alt="Pachmarhi hill station">
+                                <div class="media-body">
+                                    <h4>Nature Escapes</h4>
+                                    <p>Plan a balanced mix of forest, waterfalls, and quiet hill stations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Travel Promise</h2>
+                <p>We design journeys that respect people, culture, and nature</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-check-circle"></i></div>
+                        <h4>Honest Guidance</h4>
+                        <p>Clear travel times, best seasons, and realistic expectations for every route.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-handshake"></i></div>
+                        <h4>Local Partnerships</h4>
+                        <p>We highlight community guides, artisans, and small businesses across the state.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="highlight-card">
+                        <div class="highlight-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>Safe Planning</h4>
+                        <p>Thoughtful advice on transport, stays, and seasonal conditions to travel with ease.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to plan a smooth trip</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-6">
+                    <div class="faq-item">
+                        <h5>What is the best time to visit?</h5>
+                        <p>October to March is ideal for heritage tours and wildlife safaris, while monsoon months are
+                            best for waterfalls and greenery.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="faq-item">
+                        <h5>How many days are enough?</h5>
+                        <p>A 6 to 8 day trip covers the classic circuit. For deeper exploration, plan 10 to 14 days.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="faq-item">
+                        <h5>Can I combine culture and wildlife?</h5>
+                        <p>Yes. Popular mixes include Khajuraho with Panna, or Bhopal with Satpura and Pachmarhi.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="faq-item">
+                        <h5>Do you help with family travel?</h5>
+                        <p>We suggest routes with shorter drives, comfortable stays, and guided experiences suitable for
+                            all ages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Connect With Us</h2>
+                <p>Tell us your travel dates and interests, and we will craft a plan for you</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-7">
+                    <div class="form-card">
+                        <h3 class="mb-4">Request a Travel Plan</h3>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="fullName">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Your name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="email">Email Address</label>
+                                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="phone">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" placeholder="+91 98765 43210">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="travelMonth">Preferred Month</label>
+                                    <input type="text" class="form-control" id="travelMonth"
+                                        placeholder="October, January, etc.">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="interest">Primary Interest</label>
+                                    <select class="form-select" id="interest">
+                                        <option selected>Select a travel theme</option>
+                                        <option>Heritage & History</option>
+                                        <option>Wildlife Safaris</option>
+                                        <option>Arts & Crafts</option>
+                                        <option>Food & Culture</option>
+                                        <option>Family Friendly</option>
+                                        <option>Photography & Nature</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" for="message">Tell Us About Your Trip</label>
+                                    <textarea class="form-control" id="message" rows="4"
+                                        placeholder="Cities you want to visit, days available, and any special requests."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="updates">
+                                        <label class="form-check-label" for="updates">Send me updates about festivals
+                                            and new travel routes.</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-start">
+                                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="contact-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Tourism Board, SAGAR,MP - Central India</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <p>Helpline: +91 999922244 (10 AM - 6 PM)</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-envelope"></i>
+                            <p>mptourismcentralindia@.in</p>
+                        </div>
+                        <div class="contact-card">
+                            <i class="fas fa-compass"></i>
+                            <p>Follow curated trails for history, wildlife, and local craft.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p><i class="fas fa-heart" style="color: var(--primary-color);"></i> &copy; 2026 Madhya Pradesh Tourism</p>
+            <p style="font-size: 1.3rem; margin-top: 15px;">The Heart of India</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+
+</html>

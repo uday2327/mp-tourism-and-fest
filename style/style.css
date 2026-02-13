@@ -1,0 +1,93 @@
+:root {
+    --primary: #0d6efd;
+    --dark: #212529;
+    --light: #f8f9fa;
+}
+.slide-img {
+  height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+.carousel-item h2 {
+  color: #6f42c1;
+}
+
+
+.carousel-item {
+  padding: 40px 0;
+}
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark);
+    background: #fff;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.nav-link {
+    font-weight: 500;
+}
+
+.nav-spacer {
+    height: 72px;
+}
+
+.hero-simple {
+    padding: 40px 0 60px;
+    background: var(--light);
+}
+
+.hero-image {
+    border-radius: 12px;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+}
+
+.hero-content .lead {
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .hero-image {
+        max-height: 260px;
+    }
+}
+
+.carousel-inner img {
+    height: 360px;
+    object-fit: cover;
+}
+
+.facts-section {
+    padding: 60px 0;
+}
+
+.section-title {
+    font-weight: 700;
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.footer-simple {
+    padding: 24px 0;
+    background: var(--light);
+}
+
+@media (max-width: 768px) {
+    .carousel-inner img {
+        height: 240px;
+    }
+}

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facts - Madhya Pradesh Tourism</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --paper: #f5f7fa;
+            --ink: #2c3e50;
+            --muted: #6c757d;
+            --accent: #2c3e50;
+            --accent-dark: #2c3e50;
+            --soft: #e9ecef;
+            --card: #ffffff;
+            --primary-color: #2c3e50;
+            --secondary-color: #6c757d;
+            --dark-color: #2c3e50;
+            --light-bg: #f8f9fa;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: "Manrope", sans-serif; color: var(--ink); background: var(--paper); min-height: 100vh; }
+        h1,h2,h3,h4,h5,h6 { font-family: "Cormorant Garamond", serif; }
+        /* Hero Section */
+        .hero-section {
+            height: 80vh;
+            background-color: #2b3a45;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            margin-top: 72px;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(0.55) contrast(1.02);
+        }
+        .hero-content { position: relative; z-index: 2; animation: fadeInUp 1s ease-out; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 12px; }
+        .hero-content p { font-size: 1.1rem; margin-bottom: 8px; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        /* Section Container */
+        .section-container { padding: 60px 0; }
+        .section-light { background: white; }
+        .section-dark { background: var(--light-bg); }
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 { font-size: 2.4rem; font-weight: 700; color: var(--ink); display: inline-block; position: relative; }
+        .section-header h2::after { content: ''; position: absolute; bottom: -12px; left:50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--primary-color); border-radius: 2px; }
+        .section-header p { font-size: 1rem; color: var(--muted); margin-top: 18px; }
+        /* Card Styles */
+        .fact-card { background: var(--card); border: 1px solid var(--soft); border-radius: 22px; overflow: hidden; height: 100%; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .fact-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(44, 62, 80, 0.12); }
+        .fact-card-content { position: relative; z-index: 1; padding: 22px; }
+        .fact-card h3 { color: var(--ink); font-size: 1.7rem; margin-bottom: 10px; font-weight: 700; font-family: "Cormorant Garamond", serif; }
+        .fact-card .badge-year { display: inline-block; background: #6c757d; color: white; padding: 6px 12px; border-radius: 999px; font-weight: 600; margin-bottom: 12px; font-size: 0.85rem; letter-spacing: 0.3px; }
+        .fact-card p { font-size: 0.98rem; line-height: 1.75; color: var(--muted); margin-bottom: 14px; }
+        .fact-img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; display: block; }
+        .fact-card p:last-child {
+            margin-bottom: 0;
+        }
+        /* Stats Box */
+        .stats-box { text-align: center; padding: 24px; background: var(--card); border-radius: 18px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); transition: transform .2s ease; border: 1px solid var(--soft); }
+        .stats-box:hover { transform: scale(1.02); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+        .stats-number { font-size: 2.4rem; font-weight: 900; color: var(--ink); margin-bottom: 8px; }
+        .stats-label { font-size: 0.95rem; color: var(--muted); font-weight: 600; }
+        /* Mini Fact Card */
+        .mini-fact-card { background: var(--card); border-radius: 18px; padding: 24px; text-align: center; box-shadow: 0 6px 16px rgba(0,0,0,0.06); transition: transform .3s ease, box-shadow .3s ease; border: 1px solid var(--soft); height: 100%; }
+        .mini-fact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+        .mini-fact-card .fact-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+        .mini-fact-card h4 { color: var(--ink); font-size: 1.45rem; margin-bottom: 10px; font-weight: 700; font-family: "Cormorant Garamond", serif; }
+        .mini-fact-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.6; margin: 0; }
+        /* Force Art-style typography inside cards */
+        .fact-card,
+        .mini-fact-card,
+        .stats-box {
+            font-family: "Manrope", sans-serif;
+        }
+        .fact-card h3,
+        .mini-fact-card h4,
+        .stats-number {
+            font-family: "Cormorant Garamond", serif;
+            color: var(--ink);
+        }
+        .fact-card p,
+        .mini-fact-card p,
+        .stats-label,
+        .fact-card-content,
+        .fact-card-content * {
+            color: var(--muted);
+        }
+        /* Navbar (match index page) */
+        /* NAVBAR */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            font-size: 22px;
+        }
+        .nav-link.active {
+  font-weight: bold;
+  color: #404039 !important;
+}
+        /* Footer */
+        .footer { background: #2f3b4a; color:white; padding: 40px 0 30px; text-align:center; margin-top: 60px; }
+        .footer p { margin:8px 0; font-size:1rem; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content p { font-size: 0.95rem; }
+            .section-header h2 { font-size: 2.4rem; font-weight: 700; color: var(--ink); display: inline-block; position: relative; }
+            .fact-card { background: var(--card); border-radius: 22px; padding: 30px; margin-bottom: 24px; box-shadow: none; transition: transform .2s ease, box-shadow .2s ease; position: relative; overflow: hidden; border: 1px solid var(--soft); }
+            .fact-card h3 { color: var(--ink); font-size: 1.6rem; margin-bottom: 12px; font-weight: 700; }
+            .stats-number { font-size: 2.4rem; font-weight: 900; color: var(--ink); margin-bottom: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top bg-white shadow">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">Madhya Pradesh Tourism</a>
+
+    <!-- TOGGLER BUTTON -->
+    <button class="navbar-toggler" type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarNav">
+
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- COLLAPSIBLE MENU -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav ms-auto">
+
+        <a class="nav-link " href="index.html">Home</a>
+        <a class="nav-link active" href="facts.html">Facts</a>
+        <a class="nav-link" href="places.html">Places</a>
+        <a class="nav-link" href="festival.html">Festival</a>
+        <a class="nav-link" href="arts.html">Art</a>
+        <a class="nav-link" href="about.html">About</a>
+
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <img class="hero-bg" src="images/gwalior fort.jpg" alt="Madhya Pradesh landscape">
+        <div class="hero-content">
+            <h1>MADHYA PRADESH</h1>
+            <p>The Heart of India</p>
+            <p style="font-size: 1.2rem; margin-top: 20px;">Discover Fascinating Facts & Heritage</p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="font-size: 2rem;"></i>
+        </div>
+    </section>
+    <!-- UNESCO Sites Section -->
+    <section class="section-container section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>UNESCO World Heritage Sites</h2>
+                <p>Monuments and sites that tell the story of ancient India</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Khajuraho Temples - Temples of Eternal Love</h3>
+                            <span class="badge-year">Built: 950-1050 CE | Chandella Dynasty</span>
+                            <p>The Khajuraho temples stand as testament to the extraordinary architectural and sculptural skills of the Chandella dynasty. Located in Madhya Pradesh, these temples were constructed over a period of about 100 years during the reign of the Chandella rulers. Originally, 85 temples graced the landscape, though only 25 survive today. These temples are divided into three groups: the Western group being the largest and most famous, the Eastern group containing Hindu temples, and the Southern group consisting of Jain temples.</p>
+                            <p><strong>Architectural Significance:</strong> The temples follow the Nagara architectural style and are built without any binding material like mortar. Instead, the stones are perfectly cut and fitted into each other with such precision that not even a knife blade can pass between them. The sculptural work is extraordinary, featuring intricate carvings adorning every surface of the temples.</p>
+                            <p><strong>Historical Records:</strong> The temples were mysteriously abandoned after the 12th century and remained hidden in thick jungles for centuries. Local legends and tribal stories kept alive the memory of these magnificent structures until they were rediscovered by British colonial officials in the 19th century. In 1986, Khajuraho was designated as a UNESCO World Heritage Site, recognizing its outstanding universal value.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <img class="fact-img" src="https://source.unsplash.com/1200x800/?narmada,river,madhya-pradesh" alt="Narmada River">
+                            <h3>Sanchi Stupa - India's Oldest Stone Monument</h3>
+                            <span class="badge-year">Built: 3rd Century BCE | Mauryan Empire</span>
+                            <p>The Great Stupa at Sanchi is not just a religious monument but represents a turning point in Indian architectural history. It marks the transition from wooden structures to stone construction. Emperor Ashoka, the great Mauryan emperor who embraced Buddhism after witnessing the horrors of war, commissioned this magnificent structure as part of his mission to spread Buddhist teachings across his empire.</p>
+                            <p><strong>Historical Importance:</strong> Built roughly 2,300 years ago, Sanchi Stupa has withstood the ravages of time, earthquakes, and invasions. The stupa was damaged during an invasion in the 9th century and remained in ruins for centuries until it was restored by the British archaeologist Sir Alexander Cunningham in the 1870s. Today, it appears on India's ₹200 currency note, a recognition of its profound importance to Indian heritage.</p>
+                            <p><strong>Architectural Features:</strong> The stupa is surrounded by four ornate stone gateways (torana), each facing the four cardinal directions. These gateways are masterpieces of stone carving, depicting scenes from Buddhist life and teachings. The main dome contains Buddhist relics and the entire structure symbolizes the Buddha's achievement of Nirvana. The intricate carvings found on the gateways represent some of the finest examples of ancient Indian art and craftsmanship.</p>
+                            <p><strong>UNESCO Recognition:</strong> In 1989, Sanchi was designated as a UNESCO World Heritage Site, celebrating its significance as a masterpiece of Buddhist stone architecture and its role in preserving Buddhist heritage.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Bhimbetka Rock Shelters - Cradle of Human Civilization</h3>
+                            <span class="badge-year">Age: 30,000+ Years | Stone Age Art</span>
+                            <p>The Rock Shelters of Bhimbetka represent one of humanity's oldest dwelling sites and artistic expressions. Located in the Vindhyan mountain range, these natural sandstone rock shelters have been home to humans for over 30,000 years, making them among the most important archaeological sites in the world for understanding the development of human culture.</p>
+                            <p><strong>Ancient Paintings:</strong> More than 400 rock shelters have been identified at Bhimbetka, of which 243 contain paintings. These paintings depict hunting scenes, animals, human figures, and abstract patterns. The pigments used were natural colors derived from plants, minerals, and soil. Red, yellow, green, purple, and black colors were used to create these masterpieces that have survived millennia. Many paintings show hunting techniques, dancing, rituals, and daily life activities of prehistoric peoples.</p>
+                            <p><strong>Five Clusters:</strong> The site is divided into five clusters - Alpha, Beta, Gamma, Delta, and Mica Dump - each containing multiple shelters with paintings from different periods. The paintings range from simple handprints and animal silhouettes to complex scenes requiring sophisticated artistic skills. The presence of tools, pottery shards, and bones found in these shelters provides evidence of continuous human habitation from the Mesolithic period onwards.</p>
+                            <p><strong>Cultural Heritage:</strong> Bhimbetka provides invaluable insights into the lifestyle, diet, social structure, and beliefs of prehistoric communities. The rock art shows the evolution of artistic expression and demonstrates how humans progressively developed more sophisticated hunting and gathering techniques. In 2003, UNESCO designated Bhimbetka as a World Heritage Site, recognizing its outstanding universal value in understanding human prehistory.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Gwalior Fort - The Pearl of Indian Forts</h3>
+                            <span class="badge-year">Built: 8th Century | Never Conquered</span>
+                            <p>Gwalior Fort stands as one of the most impregnable and magnificent fortresses in India. Perched on a rocky hill about 100 meters high, this fort has dominated the landscape for over 1,000 years. The famous Mughal emperor Babur himself praised it, calling it "The Pearl Amongst Fortresses in India." The fort was built on a strategic location and has served as the seat of power for many dynasties including the Kachhapaghata, Pratihar, and Maratha dynasties.</p>
+                            <p><strong>Military Significance:</strong> What makes Gwalior Fort truly extraordinary is that it has never been conquered through direct military assault or siege warfare throughout its entire history. The fort's formidable defenses, comprising thick stone walls, multiple gateways, and strategic positions, have made it nearly impregnable. Its capture always came through negotiation, betrayal, or peaceful surrender rather than conquest. This remarkable feat in military history makes it unique among Indian fortresses.</p>
+                            <p><strong>Architectural Features:</strong> The fort complex contains magnificent palaces including the Man Mandir Palace, temples, and administrative buildings. The intricate carvings and architectural designs reflect the artistic sensibilities of the various rulers who enhanced the fort over centuries. Inside the fort lies the famous Tansen tomb, a mausoleum dedicated to the legendary musician Tansen who served Emperor Akbar's court and is considered the greatest Hindustani musician of all time.</p>
+                            <p><strong>Historical Records:</strong> The fort has witnessed the rise and fall of empires, intricate court politics, and countless moments of glory. Its walls have seen fierce negotiations, graceful cultural performances, scholarly discussions, and romantic encounters between royalty. Today, Gwalior Fort remains a testament to Indian architectural excellence and military engineering, drawing historians and tourists from around the world.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Mandu - The City of Joy and Romance</h3>
+                            <span class="badge-year">Built: 14th Century | Malwa Sultanate</span>
+                            <p>Perched on a plateau in the Vindhya Hills at an altitude of 600 meters, Mandu was founded as a strategic fortress city by the Afghan rulers of the Malwa sultanate. The city flourished during the 15th and 16th centuries and became a symbol of Afghan and Indian-Islamic architectural synthesis. Its romantic history, beautiful landscapes, and architectural marvels have earned it the reputation as the "City of Joy" - a place where love stories are born and legends are created.</p>
+                            <p><strong>The Jahaz Mahal:</strong> The most famous structure in Mandu is the Jahaz Mahal (Ship Palace), which appears to float like a ship between two artificial lakes - Munj Talao and Kapoor Talao. This five-story palace was built by Sultan Ghiyasuddin in the 15th century and served as a pleasure palace for royal recreation. The architectural design, with its combination of domes, columns, and arches, represents a magnificent blend of Hindu and Islamic architectural styles. During monsoons, when the lakes fill with water, the palace truly appears to float majestically.</p>
+                            <p><strong>Legend of Rani Roopmati:</strong> Mandu is eternally associated with the immortal love story of Rani Roopmati and Baz Bahadur. Roopmati, a legendary beauty and accomplished musician from humble origins, was seen by Baz Bahadur, the ruler of Mandu, and they fell deeply in love. Their romance became legendary across India, symbolizing eternal devotion and sacrifice. The Roopmati Palace overlooking the Narmada valley and the Baz Bahadur Palace still stand as monuments to their undying love, attracting lovers and romantics from across the world.</p>
+                            <p><strong>Architectural Marvel:</strong> Mandu showcases remarkable Indo-Islamic architecture with numerous mosques, mausoleums, palaces, and ornate gates scattered across the plateau. Each structure tells a story of the former grandeur and prosperity of the city. The city's layout reflects sophisticated urban planning of the medieval period. Though eventually abandoned after repeated invasions, Mandu's ruins continue to captivate visitors with their timeless beauty and romantic atmosphere.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Orchha - Land of Spiritual Royalty</h3>
+                            <span class="badge-year">Built: 16th Century | Bundela Dynasty</span>
+                            <p>Orchha, meaning "hidden place" in the local language, is a unique historical town that served as the capital of the Bundela kingdom. Located on the banks of the sacred Betwa River, Orchha is a place where spirituality and royalty intertwine in the most extraordinary manner. What makes Orchha truly unique in all of India is that it is the only place where Lord Rama is worshipped as a king rather than as a deity - a singular spiritual tradition found nowhere else in the world.</p>
+                            <p><strong>Divine Kingdom Concept:</strong> In the 16th century, Maharaja Madhukar Shah and his queen Kunwar Devi brought the idol of Lord Rama from Ayodhya and established it in the Raj Mandir Temple in Orchha. Since then, an unprecedented spiritual practice began where Lord Rama is treated as the rightful ruler and king of Orchha. The chief priest performs all ceremonies as if serving a living king - bathing him in sacred waters, dressing him in royal attire, offering elaborate meals, and providing music and entertainment throughout the day. This extraordinary tradition continues unbroken to this day, making Orchha spiritually unique.</p>
+                            <p><strong>Architectural Splendor:</strong> Orchha contains three magnificent palaces - the Raj Mahal, Jahangiri Mahal, and Rai Praveen Mahal - each representing different architectural styles and historical periods. The Jahangiri Mahal, built to commemorate Emperor Jahangir's visit, features distinctive Indian architecture with ornate jali work and open courtyards. The Raj Mahal showcases a beautiful blend of Hindu and Mughal architectural elements, while the intimate Rai Praveen Mahal is renowned for its artistic details and refined aesthetics.</p>
+                            <p><strong>Living Heritage:</strong> The town is also famous for its numerous cenotaphs (chattris) of royal members, beautifully arranged along the Betwa River. These cenotaphs represent the town's royal heritage and add to the overall spiritual atmosphere. The entire town appears frozen in time, with narrow lanes, ancient temples, and palatial structures creating an atmosphere where ancient Indian royalty and spirituality come alive for every visitor who walks its historic pathways.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+    <!-- Spiritual Heritage Section -->
+    <section class="section-container section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Spiritual Heritage & Pilgrimage Sites</h2>
+                <p>Sacred destinations revered across India and beyond</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Ujjain - The City of Sacred Temples</h3>
+                            <span class="badge-year">Ancient Holy City | One of Four Kumbh Mela Sites</span>
+                            <p>Ujjain is one of the most sacred and spiritually significant cities in India, revered for thousands of years as a major pilgrimage destination. Located on the banks of the Shipra River, this ancient city holds profound religious importance in Hindu, Buddhist, and Jain traditions. It is one of only four cities in India that host the grand Kumbh Mela festival, drawing millions of pilgrims who believe bathing in its sacred waters cleanses them of sin and grants spiritual liberation.</p>
+                            <p><strong>Mahakaleshwar Jyotirlinga:</strong> The most sacred shrine in Ujjain is the Mahakaleshwar Temple, which houses one of the twelve principal Jyotirlingas (manifestations of Lord Shiva) in India. This ancient temple is believed to be over 2,000 years old and stands as one of the most important pilgrimage sites for Shaivites. The annual ritual of Bhasma Aarti (ash ceremony) performed here at dawn is considered one of the most sacred rituals in Hindu worship, attracting devotees from across the world.</p>
+                            <p><strong>Historical Significance:</strong> Ujjain was the capital of the powerful Malwa kingdom and served as a major center of learning, art, and science during ancient times. The renowned mathematician and astronomer Aryabhata was born here. The city was a key stop on ancient trade routes and hosted scholars, philosophers, and seekers of knowledge from across Asia. Sanskrit literature and historical texts frequently mention Ujjain as a city of great cultural and spiritual eminence.</p>
+                            <p><strong>The Shipra River:</strong> The Shipra River flows through Ujjain and is considered sacred in Hindu tradition. The convergence of rituals, myths, and beliefs associated with this river makes Ujjain uniquely auspicious. Twelve years apart, during the Kumbh Mela festival, the river becomes the focal point of one of humanity's largest religious gatherings, with up to 100 million pilgrims converging to bathe in its waters during the auspicious period.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Wildlife Sanctuaries Section -->
+    <section class="section-container section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Wildlife Sanctuaries & Tiger Reserves</h2>
+                <p>Pristine forests and conservation areas protecting endangered species</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Bandhavgarh National Park - Tiger Territory</h3>
+                            <span class="badge-year">Est: 1968 | Project Tiger Reserve</span>
+                            <p>Bandhavgarh National Park, nestled in the Vindhyan hills, is renowned for having the highest density of Royal Bengal Tigers among all tiger reserves in the world. The park covers approximately 1,536 square kilometers of pristine forest and is one of the most important conservation areas for tiger preservation in India. The name "Bandhavgarh" literally means "the fort of the brethren," referring to an ancient fort situated within the park that dates back over 2,000 years.</p>
+                            <p><strong>Tiger Conservation Success:</strong> The park is home to around 50-60 tigers, making it one of the most tiger-rich reserves in India and a symbol of successful wildlife conservation. Tigers are not the only big cats here; the park also supports a healthy population of leopards and jaguars. Beyond the big cats, Bandhavgarh hosts an incredible variety of wildlife including spotted deer, sambar, nilgai, wild boar, sloth bears, and over 250 species of birds. The dense forests provide excellent habitat for these animals, making the park a biodiversity hotspot.</p>
+                            <p><strong>The Historic Fort:</strong> The Bandhavgarh Fort stands at an altitude of 1,258 feet and offers panoramic views of the surrounding forests and wildlife. The fort is believed to be over 2,000 years old and has remained largely unchanged, making it an archaeological wonder. Ancient inscriptions, sculptures, and temples within the fort provide valuable clues about the region's historical richness and the civilizations that once flourished here.</p>
+                            <p><strong>Conservation Excellence:</strong> The park has implemented strict protection measures and anti-poaching patrols to ensure the safety of its wildlife populations. Bandhavgarh's success in tiger protection serves as a model for other tiger reserves across India and the world. Visitors can experience tiger spotting through carefully managed jungle safaris that ensure minimal disturbance to wildlife while providing unforgettable wildlife viewing experiences.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Kanha National Park - The Jungle Book Land</h3>
+                            <span class="badge-year">Est: 1955 | Project Tiger Reserve | UNESCO Biosphere Reserve</span>
+                            <p>Kanha National Park is famously known as the inspiration for Rudyard Kipling's timeless classic "The Jungle Book." Located in the majestic Satpura Range, this pristine forest spreads over 1,945 square kilometers and is one of the most beautiful and meticulously maintained national parks in India. The park's name comes from the Kanha River which flows through it, creating a landscape of breathtaking natural beauty and abundant wildlife.</p>
+                            <p><strong>The Barasingha Conservation Story:</strong> Originally, the park was home to the "hard-ground Barasingha" or swamp deer, which was nearly extinct with only 66 individuals remaining in 1970. Through dedicated conservation efforts spanning decades, the population has been successfully restored to over 200 animals today, making Kanha a unique conservation success story celebrated worldwide. The park also supports a significant tiger population of 50+ tigers, along with leopards, wild dogs, gaur (Indian bison), wild boar, and numerous other species.</p>
+                            <p><strong>The Kipling Connection:</strong> Rudyard Kipling, who visited the Central Provinces in 1888, was profoundly inspired by the forests of Kanha to write "The Jungle Book." The characters of Mowgli, Baloo, Bagheera, and Shere Khan find their natural habitat within these forests and meadows. The same jungles that inspired the beloved story continue to thrive with abundant wildlife, making Kanha a pilgrimage destination for literature enthusiasts and nature lovers alike.</p>
+                            <p><strong>Paradise for Bird Watchers:</strong> Kanha is an absolute paradise for bird watchers with over 300 bird species recorded here. Crested serpent eagles, Bengal eagles, peafowl, jungle fowl, and numerous migratory species make their home in the dense forests and open meadows. The park's diverse habitats including grasslands, sal forests, and riverine areas support incredible biodiversity and offer unique opportunities for wildlife photography and nature exploration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Natural Wonders Section -->
+    <section class="section-container section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Natural Wonders & Rivers</h2>
+                <p>Sacred rivers and stunning natural formations shaped by millennia</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Narmada River - The Life Artery of Madhya Pradesh</h3>
+                            <span class="badge-year">Length: 1,312 km | One of India's Seven Holiest Rivers</span>
+                            <p>The Narmada River, also known as "Rewa," is one of only three rivers in India that flows from east to west - an unusual geographical feature. Originating in the Amarkantak plateau in Madhya Pradesh at an altitude of 1,057 meters, the Narmada travels westward for over 1,300 kilometers before emptying into the Arabian Sea in Gujarat. In Hindu mythology, the Narmada is considered older and holier than even the sacred Ganges River, and it is revered as a goddess by millions of devout pilgrims across India.</p>
+                            <p><strong>Religious Significance:</strong> The Narmada is one of India's seven holiest rivers, and a pilgrimage along its entire course is considered extremely auspicious and spiritually transformative. Many Hindu pilgrims undertake the "Narmada Parikrama," circumambulating the entire river from source to mouth. The river is believed to possess purifying powers, and bathing in its waters is thought to cleanse one's sins and grant spiritual salvation. Natural hot springs along the river at places like Onkareshwar and Maheshwar are particularly sacred pilgrimage sites.</p>
+                            <p><strong>Ecological Importance:</strong> The Narmada sustains millions of people along its banks, providing water for irrigation, drinking, domestic use, and industrial purposes. The river valley is home to diverse flora and fauna, and the surrounding forests support countless species of plants and animals. The river's ecosystem has been crucial for the development and flourishing of civilizations along its banks for thousands of years, serving as the lifeline for human settlements and economic activities.</p>
+                            <p><strong>Geological Marvel:</strong> Originating in the Vindhya Mountains, the Narmada flows through a dramatic landscape of deep gorges, valleys, and rocky terrain. Over millions of years, the river has carved through the landscape, creating scenic formations and natural landmarks of extraordinary beauty. The Narmada Valley contains important mineral resources and has been a key geographical feature in Indian history, serving as a cultural dividing line between North and South India throughout history.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Dhuandhar Falls - The Smoke Cascade</h3>
+                            <span class="badge-year">Located: Jabalpur | Narmada River Wonder</span>
+                            <p>The Dhuandhar Falls, whose poetic name literally means "smoke cascade" in Sanskrit, is a breathtaking waterfall where the mighty Narmada River plunges dramatically over a series of rocky formations, creating a spectacular and therapeutic misty spray that rises into the air like smoke. Located near Jabalpur in Madhya Pradesh, this natural wonder attracts thousands of visitors annually who come to witness the raw power and mesmerizing beauty of nature. The falls are particularly stunning during the monsoon season when the water flow is at its peak.</p>
+                            <p><strong>Physical Characteristics:</strong> The waterfall is created where the Narmada River encounters a series of rocky formations and drops approximately 10-15 meters with tremendous force and sound. The sheer volume of water crashing down creates a deafening thunderous roar that can be heard from considerable distances. During monsoon season, when the water flow reaches its maximum, the waterfall becomes even more dramatic and awe-inspiring, with the spray reaching heights of over 30 meters and creating a misty environment around the falls.</p>
+                            <p><strong>Geological Importance:</strong> The Dhuandhar Falls play an important role in the river's ecosystem and geology. The turbulence at the falls creates highly oxygenated water that supports diverse aquatic life downstream. The rocks at the falls show visible evidence of millions of years of erosion and water action, providing geological clues about the landscape formation. The landscape around the falls reveals fascinating geological formations and stratification of different rock layers spanning geological ages.</p>
+                            <p><strong>Cultural and Spiritual Significance:</strong> The falls have been mentioned in various ancient Hindu texts and local legends passed down through generations. The area around the falls has been a sacred spot for Hindu pilgrims for centuries seeking spiritual solace. The roar of the falls is poetically considered the voice of the goddess Narmada, and many spiritual seekers visit the site for meditation, prayer, and ritual bathing. The natural beauty combined with spiritual atmosphere makes Dhuandhar Falls a place of both ecological and profound cultural significance.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="fact-card">
+                        <div class="fact-card-content">
+                            <h3>Marble Rocks of Bhedaghat - Nature's Sculpture Gallery</h3>
+                            <span class="badge-year">Location: Jabalpur | 3 km White Marble Gorge</span>
+                            <p>The Marble Rocks at Bhedaghat, located along the sacred Narmada River near Jabalpur, are a stunning 3-kilometer-long gorge where brilliant white marble rocks rise majestically from both sides of the river, creating one of India's most spectacular natural formations. These rocks, formed from limestone and dolomite over millions of years through geological processes, have been carved and shaped by the flowing water of the Narmada River, creating nature's most beautiful and intricately detailed sculpture gallery.</p>
+                            <p><strong>Geological Formation & Age:</strong> The marble rocks are the result of geological processes spanning millions of years. The original sedimentary rocks deposited in ancient seas were transformed into marble through intense heat and pressure deep within the earth's crust. The Narmada River, as it flowed through these hardened marble beds, patiently carved out the spectacular gorge visible today. The rocks vary in height from 30 to 100 meters, creating a dramatic and ever-changing landscape of cliffs and formations.</p>
+                            <p><strong>Moonlit Magic:</strong> The Marble Rocks are perhaps most famous for their ethereal beauty during moonlit nights. The brilliant white marble seems to glow and shimmer in the moonlight, creating an almost magical and otherworldly atmosphere. Boat rides through the gorge during full moon nights are legendary and considered one of India's most romantic natural experiences. The reflections of moonlight dancing on the water create an almost surreal landscape that seems to belong to a dream or ancient myth.</p>
+                            <p><strong>Religious & Cultural Importance:</strong> The Marble Rocks region holds religious significance in local and Hindu traditions. The natural beauty of the gorge has inspired poets, artists, and spiritual seekers for centuries. The site represents the harmony between geological time and human perception, between the eternal stone and the flowing river. Visitors from across the world come here to experience the majesty of nature and to witness the timeless interplay between rock and water.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Statistics Section -->
+    <section class="section-container section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Madhya Pradesh by Numbers</h2>
+                <p>Impressive facts and remarkable figures</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="stats-box">
+                        <div class="stats-number">12</div>
+                        <div class="stats-label">UNESCO World Heritage Sites</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="stats-box">
+                        <div class="stats-number">30%</div>
+                        <div class="stats-label">Forest Cover</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="stats-box">
+                        <div class="stats-number">11</div>
+                        <div class="stats-label">National Parks</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="stats-box">
+                        <div class="stats-number">30K</div>
+                        <div class="stats-label">Years (Bhimbetka)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Quick Facts Section - 12 Mini Cards -->
+    <section class="section-container section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Facts & Discoveries</h2>
+                <p>Unique insights about Madhya Pradesh</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto text-center">
+                    <p><strong>Narmada River:</strong> Flows east to west, one of only three rivers in India with this rare direction.</p>
+                    <p><strong>Forest State:</strong> 30% forest cover, home to tigers, leopards, and rich biodiversity.</p>
+                    <p><strong>Marble Rocks:</strong> Dhuandhar Falls creates a glowing white marble gorge along the Narmada.</p>
+                    <p><strong>Khajuraho Temples:</strong> Originally 85 temples; 25 remain with flawless stone joinery.</p>
+                    <p><strong>Gwalior Fort:</strong> Unconquered by direct warfare for over 1,000 years.</p>
+                    <p><strong>Mandu Palace:</strong> Jahaz Mahal appears to float between two lakes.</p>
+                    <p><strong>30,000 Years Old:</strong> Bhimbetka shelters show prehistoric art and early human life.</p>
+                    <p><strong>Orchha Uniqueness:</strong> Only place where Lord Rama is worshipped as a king.</p>
+                    <p><strong>Tansen Legacy:</strong> Legendary musician born in Gwalior, a jewel of Akbar?s court.</p>
+                    <p><strong>Kalidas Poetry:</strong> Great Sanskrit poet whose works influenced world literature.</p>
+                    <p><strong>Tiger Density:</strong> Bandhavgarh has one of the highest tiger densities in the world.</p>
+                    <p><strong>Jungle Book Land:</strong> Kanha inspired Kipling?s ?The Jungle Book.?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p><i class="fas fa-heart" style="color: var(--primary-color);"></i> &copy; 2026 Madhya Pradesh Tourism</p>
+            <p style="font-size: 1.3rem; margin-top: 15px;">The Heart of India 🇮🇳</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Try to load a remote Madhya Pradesh image; if it succeeds, replace the local src.
+        (function(){
+            var img = document.querySelector('.hero-bg');
+            if(!img) return;
+            var remote = 'https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=1600&auto=format&fit=crop&q=80';
+            var tester = new Image();
+            tester.onload = function(){ img.src = remote; };
+            tester.onerror = function(){ /* leave local image as fallback */ };
+            tester.src = remote;
+        })();
+    </script>
+    
+
+</body>
+</html>
